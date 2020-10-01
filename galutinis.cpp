@@ -20,13 +20,12 @@ using std::cin;
 using std::string;
 using std::endl;
 using std::vector;
+using std::isdigit
 
 double rezultatai(int egzaminas, vector<int> pazymiai);
 void galutinis(vector<string> vardai, vector<string> pavardes, vector<double> galutinis);
 
-int egzaminas, nd;
-double galutinis;
-char vidurkis;
+
 
 float vidurkis(vector<int> pazymiai) {
     int suma = 0;
@@ -40,6 +39,10 @@ float vidurkis(vector<int> pazymiai) {
 
 int main()
 {
+    int egzaminas, nd;
+    double galutinis;
+    char vidurkis;
+
     vector<std::string> vardai;
     vector<std::string> pavardes;
     vector<double> pazymiai;
@@ -52,12 +55,44 @@ int main()
     cin >> n;
     if (n > 0)
     {
-        cout << "Iveskite reikalingus duomenis (Vardas, Pavarde, egz. paz.,5 nd. paz.):\n";
-        for (int i = 0; i < n; i++) {
-            cout << i + 1 << "-ojo studento duomenys: ";
-            cin >> grupe[i].vardas >> grupe[i].pavarde >> grupe[i].egz;
-            for (int i = 0; i < 5; i++) {
-                cin >> eilute.pazymiai[i];
+        for (int i=0; i<n; i++){
+            cout << "Iveskite varda:\n";
+            cin >> vardas;
+            if (isdigit(vardas[i]))
+            {
+                cout << "Klaida: studento vardas negli buti skaicius\n";
+            }
+            else
+            {
+                vardai.push_back(vardas);
+
+                cout << "Iveskite studento pavarde:\n";
+                cin >> pavarde;
+
+                if (isdigit(pavarde[i]))
+                {
+                    cout << "Klaida: studento pavarde negali buti skaicius\n";
+                }
+                else
+                {
+                    pavardes.push_back(pavarde);
+
+                    cout << "Iveskite studento egzamino rezultata desimtbaleje sistemoje: \n ";
+                    cin >> egzaminas;
+
+                    if (egzaminas < 0 || egzaminas > 11)
+                    {
+                        cout << "Klaida: rezultatas turi buti desimtbaleje(nuo 1 iki 10) sistemoje\n";
+                    }
+                    else
+                    {
+
+                    }
+
+
+
+                }
+
             }
             streamsize prec = cout.precision();
             cout << "Ivesti duomenys: " << grupe[i].vardas << " " << grupe[i].pavarde << " " << grupe[i].egz << setprecision(3)
@@ -79,9 +114,20 @@ int main()
         cout << std::endl;
     }
     else  std::cout << "Studentu skaicius turi buti teigiamas sveikasis skaicius \n";
-           
-    
+}
+double rezultatai(int egzaminas, std::vector<double> pazymiai)
+{
+    double vid, gal;
 
+    vid = accumulate(pazymiai.begin(), pazymiai.end(), 0.000) / pazymiai.size();
+    gal = (0.4 * vid) + (0.6 * egzaminas);
 
+    return gal;
+}
+
+void galutinis(std::vector<std::string> vardai, std::vector<std::string> pavardes, std::vector<double> galutinis)
+{
+    for (int i = 0; i < vardai.size(); i++)
+        std::cout << "Vardas" << vardai.at(i) << std::setw(25) << pavardes.at(i) << "Pavarde" << std::setw(25) << galutinis.at(i) << "Galutinis" << std::endl;
 }
 
