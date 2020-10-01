@@ -20,7 +20,8 @@ using std::cin;
 using std::string;
 using std::endl;
 using std::vector;
-using std::isdigit
+using std::isdigit;
+using std::setw();
 
 double rezultatai(int egzaminas, vector<int> pazymiai);
 void galutinis(vector<string> vardai, vector<string> pavardes, vector<double> galutinis);
@@ -118,10 +119,7 @@ int main()
     }
     else  cout << "Studentu skaicius turi buti teigiamas sveikasis skaicius \n";
 }
-cout << "Ivesti duomenys: " << grupe[i].vardas << " " << grupe[i].pavarde << " " << grupe[i].egz << setprecision(3)
-<< 0.6 * grupe[i].egz + 0.4 * suma / n << setprecision(prec) << endl;
-for (int i = 0; i < 5; i++) cout << " " << eilute.pazymiai[i];
-cout << " " << grupe[i].gal << std::endl;
+
 double rezultatai(int egzaminas, std::vector<double> pazymiai)
 {
     double vid, gal;
@@ -135,6 +133,6 @@ double rezultatai(int egzaminas, std::vector<double> pazymiai)
 void galutinis(std::vector<std::string> vardai, std::vector<std::string> pavardes, std::vector<double> galutinis)
 {
     for (int i = 0; i < vardai.size(); i++)
-        std::cout << "Vardas" << vardai.at(i) << std::setw(25) << pavardes.at(i) << "Pavarde" << std::setw(25) << galutinis.at(i) << "Galutinis" << std::endl;
+        cout <<"Galutiniai duomenys:"<<" "<< "Vardas" << vardai.at(i) << setw(25) << pavardes.at(i) << "Pavarde" << setw(25) << galutinis.at(i) << "Galutinis" << endl;
 }
 
