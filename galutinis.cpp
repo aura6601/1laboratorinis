@@ -14,20 +14,17 @@
 #include <cctype>
 #include <iostream>
 #include <cstring>
+#define array_size 1000000
 
-using std::cout;
-using std::cin;
-using std::string;
-using std::endl;
-using std::vector;
-using std::isdigit;
-using std::setw();
+using namespace std; 
 
-double rezultatai(int egzaminas, vector<int> pazymiai);
-void galutinis(vector<string> vardai, vector<string> pavardes, vector<double> rezultatai, vector<double>mediana);
-double mediana(vector<int> pazymiai);
-
-
+int egzaminas, nd;
+double galutinis;
+char vidurkis;
+string* vardas;
+string* pavarde;
+double* galutinis;
+double* pazymiai = new double[array_size];
 
 float vidurkis(vector<int> pazymiai) {
     int suma = 0;
@@ -41,9 +38,6 @@ float vidurkis(vector<int> pazymiai) {
 
 int main()
 {
-    int egzaminas, nd;
-    double galutinis;
-    char vidurkis;
 
     vector<std::string> vardai;
     vector<std::string> pavardes;
