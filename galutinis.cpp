@@ -24,7 +24,8 @@ using std::isdigit;
 using std::setw();
 
 double rezultatai(int egzaminas, vector<int> pazymiai);
-void galutinis(vector<string> vardai, vector<string> pavardes, vector<double> galutinis);
+void galutinis(vector<string> vardai, vector<string> pavardes, vector<double> rezultatai, vector<double>mediana);
+double mediana(vector<int> pazymiai);
 
 
 
@@ -120,7 +121,7 @@ int main()
     else  cout << "Studentu skaicius turi buti teigiamas sveikasis skaicius \n";
 }
 
-double rezultatai(int egzaminas, std::vector<double> pazymiai)
+double rezultatai(int egzaminas, vector<int> pazymiai)
 {
     double vid, gal;
 
@@ -130,9 +131,23 @@ double rezultatai(int egzaminas, std::vector<double> pazymiai)
     return gal;
 }
 
-void galutinis(std::vector<std::string> vardai, std::vector<std::string> pavardes, std::vector<double> galutinis)
+double mediana(vector<int>pazymiai)
+{
+        sort(pazymiai.begin(), pazymiai.end());
+
+        if (pazymiai.size() % 2 == 0) {
+            return (pazymiai[pazymiai.size() / 2 - 1] + pazymiai[pazymiai.size() / 2]) / 2;
+        }
+        else {
+            return pazymiai[pazymiai.size() / 2];
+        }
+}
+
+
+
+void galutinis(vector<string> vardai, vector<string> pavardes, vector<double> rezultatai, vector<double> mediana)
 {
     for (int i = 0; i < vardai.size(); i++)
-        cout <<"Galutiniai duomenys:"<<" "<< "Vardas" << vardai.at(i) << setw(25) << pavardes.at(i) << "Pavarde" << setw(25) << galutinis.at(i) << "Galutinis" << endl;
+        cout <<"Galutiniai duomenys:"<<" "<< "Vardas" << vardai.at(i) << setw(25) << pavardes.at(i) << "Pavarde" << setw(25) << rezultatai.at(i) << "Galutinis" << setw(25)<<"Mediana"<<mediana.at(i)<< endl;
 }
 
