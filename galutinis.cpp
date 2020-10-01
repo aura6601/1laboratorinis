@@ -60,7 +60,7 @@ int main()
             cin >> vardas;
             if (isdigit(vardas[i]))
             {
-                cout << "Klaida: studento vardas negli buti skaicius\n";
+                cout << "Klaida: studento vardas negli buti skaicius.\n";
             }
             else
             {
@@ -71,7 +71,7 @@ int main()
 
                 if (isdigit(pavarde[i]))
                 {
-                    cout << "Klaida: studento pavarde negali buti skaicius\n";
+                    cout << "Klaida: studento pavarde negali buti skaicius.\n";
                 }
                 else
                 {
@@ -82,39 +82,46 @@ int main()
 
                     if (egzaminas < 0 || egzaminas > 11)
                     {
-                        cout << "Klaida: rezultatas turi buti desimtbaleje(nuo 1 iki 10) sistemoje\n";
+                        cout << "Klaida: rezultatas turi buti desimtbaleje(nuo 1 iki 10) sistemoje.\n";
+                    }
+                    
+                    cout << "Iveskite namu darbu pazymius \n";
+                    cin >> nd;
+                    if (nd >= 0 && nd <= 10)
+                    {
+                        pazymiai.push_back(nd);
+                        cout << "Ar ivedete visus rezulatatys (Y/N)? \n";
+                        string ats;
+                        cin >> ats;
+
+                        if (ats == "Y") {
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Klaida: reikia pasirinkti '+' arba '-'.\n";
+                        }
+
                     }
                     else
                     {
-
+                        cout<<"Klaida: ivedete netinkama skaiciu.\n"
                     }
-
-
 
                 }
 
             }
-            streamsize prec = cout.precision();
-            cout << "Ivesti duomenys: " << grupe[i].vardas << " " << grupe[i].pavarde << " " << grupe[i].egz << setprecision(3)
-                << 0.6 * grupe[i].egz + 0.4 * suma / n << setprecision(prec) << endl;
-            for (int i = 0; i < 5; i++) cout << " " << eilute.pazymiai[i];
-            cout << " " << grupe[i].gal << std::endl;
-        }
+            galutinis.push_back(rezultatai(egzaminas, pazymiai));
+            pazymiai.clear();
 
-        for (int i = 0; i < n; i++) {
-            cout << grupe[i].vardas << " : ";
-        }
-        cout << std::endl;
-        studentas* temp = new studentas[n + 1];
-        for (int i = 0; i < n; i++) temp[i] = grupe[i];
-
-        for (int i = 0; i < n; i++) {
-            cout << temp[i].vardas << " : ";
-        }
-        cout << std::endl;
+        }  
     }
-    else  std::cout << "Studentu skaicius turi buti teigiamas sveikasis skaicius \n";
+    else  cout << "Studentu skaicius turi buti teigiamas sveikasis skaicius \n";
 }
+cout << "Ivesti duomenys: " << grupe[i].vardas << " " << grupe[i].pavarde << " " << grupe[i].egz << setprecision(3)
+<< 0.6 * grupe[i].egz + 0.4 * suma / n << setprecision(prec) << endl;
+for (int i = 0; i < 5; i++) cout << " " << eilute.pazymiai[i];
+cout << " " << grupe[i].gal << std::endl;
 double rezultatai(int egzaminas, std::vector<double> pazymiai)
 {
     double vid, gal;
