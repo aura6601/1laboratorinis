@@ -14,7 +14,6 @@
 #include <cctype>
 #include <iostream>
 #include <cstring>
-#define array_size 1000000
 
 using namespace std; 
 
@@ -28,7 +27,7 @@ double* pazymiai = new double[array_size];
 
 double rezultatai(int egzaminas, double arr[], int nd);
 double mediana(double arr[], int nd);
-void galutinis(string vardai[], std::string pavardes[], double galutiniai[], int studentai=0);
+void galutinis(string vardai[], std::string pavardes[], double galutiniai[], int studentai=0, double mediana);
 
 int main()
 {
@@ -40,9 +39,15 @@ int main()
     cout << "Iveskite studentu skaiciu: \n ";
     int n = 0;
     cin >> n;
+    v = new string[n];
+    p = new string[n];
+    gal = new double[n];
+    med = new double[n];
+    
     if (n > 0)
     {
         for (int i=0; i<n; i++){
+            studentai = n;
             cout << "Iveskite varda:\n";
             cin >> vardas;
             if (isdigit(vardas[i]))
@@ -51,7 +56,7 @@ int main()
             }
             else
             {
-                vardai.push_back(vardas);
+                v[i] = vardas;
 
                 cout << "Iveskite studento pavarde:\n";
                 cin >> pavarde;
@@ -62,7 +67,7 @@ int main()
                 }
                 else
                 {
-                    pavardes.push_back(pavarde);
+                    p[i]=pavarde;
 
                     cout << "Iveskite studento egzamino rezultata desimtbaleje sistemoje: \n ";
                     cin >> egzaminas;
@@ -98,41 +103,42 @@ int main()
                 }
 
             }
-            galutinis.push_back(rezultatai(egzaminas, pazymiai));
-            pazymiai.clear();
+            gal[i] = rezultatai(egzaminas, pazymiai);
+            med[i] = mediana(pazymiai);
 
         }  
     }
     else  cout << "Studentu skaicius turi buti teigiamas sveikasis skaicius \n";
 }
 
-double rezultatai(int egzaminas, vector<int> pazymiai)
+double rezultatai(int egzaminas, double arr[], int nd)
 {
-    double vid, gal;
+    int i, sum = 0;
 
-    vid = accumulate(pazymiai.begin(), pazymiai.end(), 0.000) / pazymiai.size();
-    gal = (0.4 * vid) + (0.6 * egzaminas);
+    for (i = 0; i < sk; ++i) {
+        sum += arr[i];
+    }
 
-    return gal;
+    return ((0.4 * (double(sum) / sk)) + (0.6 * egr));
 }
 
-double mediana(vector<int>pazymiai)
+double mediana(double arr[], int nd)
 {
-        sort(pazymiai.begin(), pazymiai.end());
+        sort(arr, arr + nd);
 
-        if (pazymiai.size() % 2 == 0) {
-            return (pazymiai[pazymiai.size() / 2 - 1] + pazymiai[pazymiai.size() / 2]) / 2;
+        if (nd % 2 == 0) {
+            return (arr[nd / 2 - 1] + arr[nd / 2]) / 2;
         }
         else {
-            return pazymiai[pazymiai.size() / 2];
+            return arr[nd.size() / 2];
         }
 }
 
 
 
-void galutinis(vector<string> vardai, vector<string> pavardes, vector<double> rezultatai, vector<double> mediana)
+void galutinis(string vardai[], std::string pavardes[], double galutiniai[], int studentai = 0, double mediana)
 {
-    for (int i = 0; i < vardai.size(); i++)
-        cout <<"Galutiniai duomenys:"<<" "<< "Vardas" << vardai.at(i) << setw(25) << pavardes.at(i) << "Pavarde" << setw(25) << rezultatai.at(i) << "Galutinis" << setw(25)<<"Mediana"<<mediana.at(i)<< endl;
+    for (int i = 0; i < studentai; i++)
+        cout <<"Galutiniai duomenys:"<<" "<< "Vardas" << vardai.[i] << setw(25)<< "Pavarde" << pavardes.[i] <<setw(25) << "Galutinis" << galutiniai[i] << setw(25)<<mediana.at(i)<<"Mediana"<< endl;
 }
 
