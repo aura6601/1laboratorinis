@@ -26,25 +26,16 @@ string* pavarde;
 double* galutinis;
 double* pazymiai = new double[array_size];
 
-float vidurkis(vector<int> pazymiai) {
-    int suma = 0;
-    int dydis = pazymiai.size();
-
-    for (int i = 0; i < dydis; i++) {
-        suma += pazymiai[i];
-    }
-    return suma / dydis;
-}
+double rezultatai(int egzaminas, double arr[], int nd);
+double mediana(double arr[], int nd);
+void galutinis(string vardai[], std::string pavardes[], double galutiniai[], int studentai=0);
 
 int main()
 {
 
-    vector<std::string> vardai;
-    vector<std::string> pavardes;
-    vector<double> pazymiai;
-    vector<double> galutinis;
-    string vardas;
-    string pavarde;
+    int n, egzaminas = 0, pazymiai;
+    double galutinis;
+    string vardas, pavarde;
     
     cout << "Iveskite studentu skaiciu: \n ";
     int n = 0;
